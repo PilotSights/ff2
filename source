@@ -1,0 +1,18 @@
+local plr = game.Players.LocalPlayer
+local rs = game:GetService("RunService")
+
+function magBall(ball)
+   if ball and plr.Character then
+       firetouchinterest(plr.Character["Left Arm"], ball, 0)
+       task.wait()
+       firetouchinterest(plr.Character["Left Arm"], ball, 1)
+   end
+end
+
+rs.Stepped:Connect(function()
+   for i,v in pairs(workspace:GetChildren()) do
+       if v.Name == "Football" and v:IsA("BasePart") then
+           magBall(v)
+       end
+   end
+end)
